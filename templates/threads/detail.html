@@ -1,0 +1,22 @@
+
+{{ question }}
+<h1>{{ thread.title }}</h1>
+<ul>
+    {% for comment in thread.comment_set.all %}
+    <li>{{ comment.text }}</li>
+    {% endfor %}
+</ul>
+
+
+<form action="{% url 'threads:vote' thread.id %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>{{ thread.title }}</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{#    {% for choice in thread.choice_set.all %}#}
+{#        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">#}
+{#        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>#}
+{#    {% endfor %}#}
+</fieldset>
+<input type="submit" value="Vote">
+</form>

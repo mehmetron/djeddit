@@ -1,0 +1,12 @@
+
+{% if latest_thread_list %}
+<ul>
+    {%  for thread in latest_thread_list %}
+    <li><a href="{% url 'threads:detail' thread.id %}">{{ thread.title }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No threads are available.</p>
+{% endif %}
+
+</ul>
